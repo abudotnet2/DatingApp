@@ -16,6 +16,6 @@ namespace LuvmiDAP.API.Data
 
         }
         public DbSet<DValue> DValues { get; set; }
-   
+        public DbSet<User> Users { get; set; }
     }
 }

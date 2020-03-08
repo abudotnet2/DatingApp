@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using LuvmiDAP.API.Data;
 using LuvmiDAP.API.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LuvmiDAP.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -19,7 +21,7 @@ namespace LuvmiDAP.API.Controllers
         public ValuesController(DataContext context)
         {
             this._context = context;
-        }   
+        }
         // GET: api/Values
         [HttpGet]
         public async Task<  IActionResult> Get()
@@ -29,6 +31,7 @@ namespace LuvmiDAP.API.Controllers
             return Ok(values);
         }
 
+        [AllowAnonymous]
         // GET: api/Values/5
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
