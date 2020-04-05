@@ -15,7 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace LuvmiDAP.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
@@ -27,9 +27,17 @@ namespace LuvmiDAP.API.Controllers
             this.config = config;
         }
 
+        [HttpGet("ping")]
+        public IActionResult PingService(RegisterDto model)
+        {
+            // validate request
+
+
+            return Ok("Service Pindged");
+        }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterDto  model)
+        public async Task<IActionResult> Register([FromBody]RegisterDto  model)
         {
             // validate request
 
@@ -47,7 +55,7 @@ namespace LuvmiDAP.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserDto model)
+        public async Task<IActionResult> Login([FromBody]UserDto model)
         {
             var user = await _repo.Login(model.Username.ToLower(), model.Password);
 

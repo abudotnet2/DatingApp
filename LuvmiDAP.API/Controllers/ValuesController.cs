@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LuvmiDAP.API.Controllers
 {
-    [Authorize]
+   // [Authorize]
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
